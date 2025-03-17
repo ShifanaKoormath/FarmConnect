@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import PestManagement from "./PestManagement";
+import Chat from "../components/Chat";
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [weather, setWeather] = useState(null);
@@ -90,6 +91,7 @@ const Dashboard = () => {
       alert("Error fetching crop price. Try again later.");
     }
   };
+  
   const handleChatbotAsk = async () => {
     if (!chatQuestion) return alert("Enter a farming-related question!");
 
@@ -107,6 +109,7 @@ const Dashboard = () => {
       alert("Chatbot is currently unavailable. Try again later.");
     }
   };
+  
   return (
     <div className="container mt-5">
       <div className="card p-4 shadow-lg">
@@ -168,7 +171,7 @@ const Dashboard = () => {
                 {loading ? "Checking..." : "Check News"}
               </button>
             </div>
-
+            <PestManagement />
             {/* Display News Articles */}
             {articles.length > 0 && (
               <div className="mt-4">
@@ -185,6 +188,7 @@ const Dashboard = () => {
                 </ul>
               </div>
             )}
+            <Chat />
              {/* Farming Chatbot Section */}
              <div className="mt-4">
               <h4>🤖 Farming Chatbot</h4>

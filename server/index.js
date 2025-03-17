@@ -15,8 +15,12 @@ app.use("/api/news", newsRoutes);
 const cropPriceRoutes = require("./routes/cropPriceRoutes");
 app.use("/api/crop-price", cropPriceRoutes);
 const chatbotRoutes = require("./routes/chatbotRoutes"); 
-
+const pestRoutes = require("./routes/pestRoutes");
+app.use("/api/pest", pestRoutes);
 app.use("/api/chatbot", chatbotRoutes); 
+const chatRoutes = require("./routes/chatRoutes");
+app.use("/api/chat", chatRoutes);
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
