@@ -37,8 +37,12 @@ http://localhost:3000/login for logging in.
 ✅ User Authentication (Signup/Login)
 ✅ Weather Forecast (Real-time weather updates)
 ✅ News Fact-Checking (Validates agricultural news)
+✅Pest Management Alerts
+✅Chat Feature(Enables real-time farmer-to-farmer communication)
+✅Crop Price Prediction
+✅Farming Chatbot
 ✅ Dashboard (User-friendly interface)
-✅ About Section (Details about FarmConnect)
+
 
 🛠️ Technologies Used
 Frontend: React.js, Bootstrap
