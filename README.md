@@ -37,10 +37,10 @@ http://localhost:3000/login for logging in.
 ✅ User Authentication (Signup/Login)
 ✅ Weather Forecast (Real-time weather updates)
 ✅ News Fact-Checking (Validates agricultural news)
-✅Pest Management Alerts
-✅Chat Feature(Enables real-time farmer-to-farmer communication)
-✅Crop Price Prediction
-✅Farming Chatbot
+✅ Pest Management Alerts (Pest detection & treatment recommendations)
+✅ Chat Feature (Farmer-to-farmer communication)
+✅ Crop Price Prediction (Real-time & predicted prices)
+✅ Farming Chatbot (AI-based farming assistant)
 ✅ Dashboard (User-friendly interface)
 
 
@@ -48,7 +48,7 @@ http://localhost:3000/login for logging in.
 Frontend: React.js, Bootstrap
 Backend: Node.js, Express.js
 Database: MongoDB Atlas
-APIs: OpenWeather API, NewsAPI
+APIs: OpenWeather API, NewsAPI,Roboflow (Pest Detection)
 
 📄 Project Documentation
 For detailed project documentation, refer to the FarmConnect.pdf file.
