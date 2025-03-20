@@ -15,6 +15,7 @@ cd FarmConnect
 
 cd server
 npm install
+npm install axios multer
 
 3️⃣ Start the Backend Server
 
@@ -36,6 +37,7 @@ http://localhost:3000/login for logging in.
 🚀 Features
 ✅ User Authentication (Signup/Login)
 ✅ Weather Forecast (Real-time weather updates)
+✅ Pest Management
 ✅ News Fact-Checking (Validates agricultural news)
 ✅ Dashboard (User-friendly interface)
 ✅ About Section (Details about FarmConnect)
