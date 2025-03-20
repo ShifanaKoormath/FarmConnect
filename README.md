@@ -40,7 +40,7 @@ http://localhost:3000/login for logging in.
 ✅ Pest Management Alerts (Pest detection & treatment recommendations)
 ✅ Chat Feature (Farmer-to-farmer communication)
 ✅ Crop Price Prediction (Real-time & predicted prices)
-✅ Farming Chatbot (AI-based farming assistant)
+✅ Farming chatbot
 ✅ Dashboard (User-friendly interface)
 
 
