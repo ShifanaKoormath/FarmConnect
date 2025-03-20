@@ -16,6 +16,8 @@ const About = () => {
           <li className="list-group-item">📰 News Fact-Checking</li>
           <li className="list-group-item">💰 Crop Price Prediction</li>
           <li className="list-group-item">🤖 Farming Chatbot</li>
+          <li className="list-group-item">🐛 Pest Detection & Management</li>
+          <li className="list-group-item">💬 Farmers Chatroom</li>
         </ul>
         <p className="mt-3">
           Our goal is to empower farmers with the latest technology and insights.

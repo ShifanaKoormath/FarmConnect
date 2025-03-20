@@ -1,40 +1,32 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import MainDashboard from "./pages/MainDashboard";
+import Weather from "./pages/Weather";
+import CropPrice from "./pages/CropPrice";
+import NewsCheck from "./pages/NewsCheck";
+import PestDetection from "./pages/PestDetection";
+import Chat from "./components/Chat";
+import Chatbot from "./pages/Chatbot";
 import About from "./pages/About";
-
 
 const App = () => {
   return (
     <Router>
-      <div>
-        {/* Navbar */}
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div className="container">
-            <Link className="navbar-brand" to="/">FarmConnect</Link>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav ms-auto">
-                <li className="nav-item"><Link className="nav-link" to="/dashboard">🏠 Dashboard</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/about">📜 About</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/login">🚪 Logout</Link></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        {/* Routes */}
-        <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<MainDashboard />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/crop-price" element={<CropPrice />} />
+        <Route path="/news" element={<NewsCheck />} />
+        <Route path="/pest" element={<PestDetection />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
     </Router>
   );
 };

@@ -186,7 +186,7 @@ const Dashboard = () => {
                 Detect Pests Online
               </a>
             </div>
-
+            <PestDetection/>
             {/* 🗣️ Chat System */}
             <Chat />
 
