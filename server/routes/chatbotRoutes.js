@@ -1,26 +1,43 @@
 const express = require("express");
+const { spawn } = require("child_process");
+const path = require("path");
+
 const router = express.Router();
 
-// Simple predefined responses for common farming questions
-const chatbotResponses = {
-  "best crops for summer": "For summer, crops like maize, watermelon, and tomatoes grow well.",
-  "how to prevent pests": "Use organic pesticides like neem oil and maintain proper crop rotation.",
-  "best fertilizers for rice": "Urea and DAP fertilizers are commonly used for rice cultivation.",
-  "how to improve soil fertility": "Use compost, crop rotation, and organic manure to improve soil health.",
-};
+router.post("/", async (req, res) => {
+    try {
+        const userMessage = req.body.message;
+        let chatbotReply = [];
 
-// Chatbot API endpoint
-router.post("/", (req, res) => {
-  const { question } = req.body;
+        const pythonScript = path.resolve(__dirname, "../chatbot.py");
 
-  if (!question) {
-    return res.status(400).json({ message: "Please enter a question." });
-  }
+        const pythonProcess = spawn("python", [pythonScript, userMessage]);
 
-  const lowerCaseQuestion = question.toLowerCase();
-  const response = chatbotResponses[lowerCaseQuestion] || "Sorry, I don't have an answer for that. Try another question.";
+        pythonProcess.stdout.on("data", (data) => {
+            chatbotReply.push(data);
+        });
 
-  res.json({ question, response });
+        pythonProcess.stderr.on("data", (error) => {
+            console.error("🔴 Chatbot Error:", error.toString());
+        });
+
+        pythonProcess.on("close", (code) => {
+            if (code !== 0) {
+                console.error(`⚠️ Chatbot process exited with code ${code}`);
+                return res.status(500).json({ error: "Chatbot process failed" });
+            }
+            
+            let finalReply = Buffer.concat(chatbotReply).toString().trim();
+            finalReply = finalReply.replace(/\s{2,}/g, " ");  // ✅ Remove extra spaces
+
+            // ✅ Ensure proper JSON response format
+            res.json({ reply: finalReply });
+        });
+
+    } catch (error) {
+        console.error("🚨 Chatbot Communication Error:", error);
+        res.status(500).json({ error: "Chatbot service is unavailable" });
+    }
 });
 
 module.exports = router;
