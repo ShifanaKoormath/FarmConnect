@@ -2,21 +2,23 @@ import React, { useState } from "react";
 
 const PestDetection = () => {
   const [issueText, setIssueText] = useState("");
-  const [cropName, setCropName] = useState("");
   const [textAnalysis, setTextAnalysis] = useState(null);
+  const [loading, setLoading] = useState(false); // ✅ Added loading state
 
-  // Send text input to backend for issue analysis
+  // Send pest issue to backend for analysis
   const handleAnalyzeIssue = async () => {
-    if (!issueText || !cropName) {
-      alert("❌ Please enter pest and crop name.");
+    if (!issueText.trim()) {
+      alert("❌ Please enter a pest name.");
       return;
     }
+
+    setLoading(true); // ✅ Show loading state
 
     try {
       const response = await fetch("http://localhost:5000/api/pest/check", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ issue: issueText, crop: cropName }),
+        body: JSON.stringify({ issue: issueText }),
       });
 
       if (!response.ok) {
@@ -27,7 +29,9 @@ const PestDetection = () => {
       setTextAnalysis(data);
     } catch (error) {
       console.error("🚨 Error analyzing pest issue:", error);
-      alert("Failed to analyze pest issue.");
+      alert("⚠️ Failed to analyze pest issue. Please try again.");
+    } finally {
+      setLoading(false); // ✅ Hide loading state
     }
   };
 
@@ -35,9 +39,9 @@ const PestDetection = () => {
     <div className="container mt-4">
       <h3>🐛 Pest Management</h3>
 
-      {/* 🔎 Text-Based Pest Issue Analysis */}
+      {/* 🔎 Pest Issue Analysis */}
       <div className="mt-3">
-        <h5>🔎 Enter Pest Name & Crop</h5>
+        <h5>🔎 Enter Pest Name</h5>
         <input
           type="text"
           className="form-control mt-2"
@@ -45,27 +49,32 @@ const PestDetection = () => {
           value={issueText}
           onChange={(e) => setIssueText(e.target.value)}
         />
-        <input
-          type="text"
-          className="form-control mt-2"
-          placeholder="E.g., Wheat"
-          value={cropName}
-          onChange={(e) => setCropName(e.target.value)}
-        />
-        <button className="btn btn-warning mt-2" onClick={handleAnalyzeIssue}>
-          Analyze Issue
+        <button
+          className="btn btn-warning mt-2"
+          onClick={handleAnalyzeIssue}
+          disabled={loading} // ✅ Disable button when loading
+        >
+          {loading ? "Analyzing..." : "Analyze Issue"}
         </button>
       </div>
 
-      {/* 📝 Display Analysis Result */}
-      {textAnalysis && (
-        <div className="card mt-3 p-3">
-          <h5>📝 Analysis Result:</h5>
-          <p>{textAnalysis.recommendation || textAnalysis.message}</p>
-        </div>
-      )}
+    {/* 📝 Display Analysis Result */}
+{textAnalysis && (
+  <div className="card mt-3 p-3">
+    <h5>📝 Analysis Result:</h5>
+    {textAnalysis.recommendation ? (
+      <ul>
+        {textAnalysis.recommendation.split("\n").map((line, index) => (
+          <li key={index}>{line}</li>
+        ))}
+      </ul>
+    ) : (
+      <p>{textAnalysis.message}</p>
+    )}
+  </div>
+)}
 
-      {/* 🔗 Redirect to Online Pest Detection */}
+      {/* 🔗 Online Pest Detection */}
       <div className="mt-4">
         <h4>🐛 Detect Pests Using Images</h4>
         <p>Use AI to detect pests by uploading an image.</p>

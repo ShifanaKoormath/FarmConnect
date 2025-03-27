@@ -99,3 +99,6 @@ For detailed project documentation, refer to the FarmConnect.pdf file.
 📞 Support
 For any issues or contributions, feel free to open an Issue or Pull Request on GitHub.
 
+updation:
+cd server 
+pip install datasets
