@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactMarkdown from "react-markdown"; // ✅ Added for rich text rendering
 
 const Chatbot = () => {
   const [chatQuestion, setChatQuestion] = useState("");
@@ -50,9 +51,9 @@ const Chatbot = () => {
       </button>
       
       {chatResponse && (
-        <div className="card mt-3 p-3">
+        <div className="card mt-3 p-3 chatbot-response">
           <h5>💬 Chatbot Response:</h5>
-          <p>{chatResponse}</p>
+          <ReactMarkdown>{chatResponse}</ReactMarkdown> {/* ✅ Proper text formatting */}
         </div>
       )}
     </div>

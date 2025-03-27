@@ -16,27 +16,38 @@ Install additional dependencies:
 
 bash
 Copy code
+
+
 npm install axios multer express body-parser cors path
+
 3️⃣ Setup the Chatbot
 Install Python dependencies:
 Ensure you have Python installed, then run:
 
 bash
 Copy code
+
 pip install datasets scikit-learn
+
 4️⃣ Start the Backend Server
+
 bash
 Copy code
+
 node index.js
+
 The server should run on:
 http://localhost:5000/
 
 5️⃣ Setup the Frontend
 bash
 Copy code
+
 cd client
+npm install react-markdown
 npm install
 npm start
+
 The frontend should run on:
 http://localhost:3000/
 
